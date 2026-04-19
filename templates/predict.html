@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container">
+    <h2 class="center">Predict Dialect</h2>
+
+    <div class="card">
+        <p class="muted">Enter a short phrase or choose a sample to quickly populate the input.</p>
+
+        <div class="region-grid">
+        <div onclick="fillInput('entra baava')">Telangana</div>
+        <div onclick="fillInput('oy nuv ekkada')">Guntur</div>
+        <div onclick="fillInput('andi meeru')">Krishna</div>
+        <div onclick="fillInput('andi amma')">Godavari</div>
+        <div onclick="fillInput('dei nuv')">Chittoor</div>
+        <div onclick="fillInput('bey nuv')">Srikakulam</div>
+        <div onclick="fillInput('bro nuv')">Vizag</div>
+        <div onclick="fillInput('rey nuv')">Kurnool</div>
+        <div onclick="fillInput('macha nuv')">Anantapur</div>
+    </div>
+
+        <form method="POST" class="form" style="margin-top:16px" id="predictForm">
+            <input id="inputText" name="sentence" placeholder="Enter slang..." required aria-label="Enter slang" autocomplete="off">
+            <button type="submit" id="predictBtn"><span id="btnLabel">Predict</span><span id="btnSpinner" class="spinner" style="display:none;margin-left:8px"></span></button>
+        </form>
+
+        <div id="resultArea" class="fade-up" aria-live="polite">
+            {% if result %}
+            <div class="result">
+                <h2>{{ result }}</h2>
+                <div class="badge">{{ confidence }}% confidence</div>
+            </div>
+            {% endif %}
+        </div>
+
+    </div>
+
+    {% if result %}
+    <div class="result">
+        <h2>{{ result }}</h2>
+        <p>{{ confidence }}% confidence</p>
+    </div>
+    {% endif %}
+
+</div>
+
+{% endblock %}

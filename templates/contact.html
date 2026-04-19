@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+<div class="container">
+    <div class="card">
+        <h2>Contact</h2>
+        <p class="muted">Questions or feedback about the project? Send a message.</p>
+
+        {% if success %}
+        <div class="alert alert-success">Thank you — your message has been sent.</div>
+        {% endif %}
+        {% if error %}
+        <div class="alert alert-error">{{ error }}</div>
+        {% endif %}
+
+        <form class="contact-form" method="POST">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <textarea name="message" placeholder="Your Message" rows="5"></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

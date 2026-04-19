@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>{% block title %}Dialect Identification{% endblock %}</title>
+
+    <!-- Fonts & icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- App stylesheet -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    {% block head %}{% endblock %}
+</head>
+
+<body>
+
+<header class="navbar">
+    <div class="nav-container">
+        <a class="logo" href="{{ url_for('home') }}">💬 Dialect AI</a>
+
+        <nav class="nav-links">
+            <a href="/" class="nav-item {{ 'active' if request.path=='/' else '' }}">Home</a>
+            <a href="/predict" class="nav-item {{ 'active' if request.path=='/predict' else '' }}">Predict</a>
+            <a href="/about" class="nav-item {{ 'active' if request.path=='/about' else '' }}">About</a>
+            <a href="/contact" class="nav-item {{ 'active' if request.path=='/contact' else '' }}">Contact</a>
+        </nav>
+
+        <button class="nav-toggle" aria-label="Open menu" onclick="document.body.classList.toggle('nav-open')">☰</button>
+    </div>
+</header>
+
+<main class="main page">
+    {% block content %}{% endblock %}
+</main>
+
+<!-- Floating chat shortcut -->
+<button class="chatbot" aria-label="Open assistant" onclick="toggleChat()">💬</button>
+
+<aside id="chatbox" class="chatbox hidden" role="dialog" aria-hidden="true">
+    <h3>Assistant</h3>
+    <p class="muted">Try sample slang phrases</p>
+    <ul class="chat-samples">
+        <li>entra baava</li>
+        <li>andi meeru</li>
+        <li>oy nuv ekkada</li>
+    </ul>
+</aside>
+
+<footer class="footer footer-dark">
+    <div class="footer-inner">
+        <div class="footer-col footer-brand">
+            <a class="logo" href="{{ url_for('home') }}">💬 Dialect AI</a>
+            <p class="muted" style="max-width:320px;margin-top:8px;color:rgba(255,255,255,0.8)">Research demo that identifies Telugu dialects from short informal phrases.</p>
+            <div class="social" style="margin-top:12px;display:flex;gap:10px">
+                <a href="#" aria-label="GitHub" class="social-link">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 .5C5.648.5.5 5.648.5 12c0 5.088 3.292 9.405 7.872 10.93.576.107.784-.25.784-.556 0-.273-.01-1-.015-1.957-3.202.696-3.88-1.543-3.88-1.543-.523-1.33-1.277-1.684-1.277-1.684-1.042-.712.08-.698.08-.698 1.152.081 1.758 1.183 1.758 1.183 1.024 1.754 2.686 1.248 3.342.955.104-.743.401-1.248.729-1.535-2.556-.29-5.244-1.278-5.244-5.686 0-1.256.45-2.282 1.183-3.088-.119-.29-.512-1.459.112-3.041 0 0 .966-.31 3.165 1.18a11.02 11.02 0 012.88-.388c.977.005 1.962.132 2.88.388 2.197-1.49 3.162-1.18 3.162-1.18.626 1.582.233 2.75.114 3.04.736.806 1.183 1.832 1.183 3.088 0 4.42-2.693 5.392-5.256 5.675.412.356.78 1.058.78 2.133 0 1.54-.014 2.778-.014 3.156 0 .309.205.67.79.556C20.71 21.405 24 17.088 24 12 24 5.648 18.352.5 12 .5z" fill="currentColor"/></svg>
+                </a>
+                <a href="#" aria-label="LinkedIn" class="social-link">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M4.98 3.5C4.98 4.88 3.86 6 2.48 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM0 8h5v16H0zM8 8h4.8v2.2h.07c.67-1.2 2.3-2.46 4.73-2.46C22.8 7.74 24 10.02 24 13.66V24h-5v-9.7c0-2.32-.04-5.3-3.22-5.3-3.22 0-3.71 2.5-3.71 5.12V24H8V8z" fill="currentColor"/></svg>
+                </a>
+            </div>
+        </div>
+
+        <div class="footer-col footer-links">
+            <strong style="color:rgba(255,255,255,0.95)">Product</strong>
+            <nav style="display:flex;flex-direction:column;gap:6px;margin-top:8px">
+                <a href="/predict">Predict</a>
+                <a href="/about">About</a>
+                <a href="/contact">Contact</a>
+            </nav>
+        </div>
+
+        <div class="footer-col footer-contact">
+            <strong style="color:rgba(255,255,255,0.95)">Contact</strong>
+            <p class="muted" style="margin-top:8px;color:rgba(255,255,255,0.8)">Email: <a href="mailto:dialectai@gmail.com">dialectai@gmail.com</a></p>
+            <p class="muted" style="margin-top:6px;color:rgba(255,255,255,0.6)">© 2026 Dialect Identification</p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="footer-inner" style="justify-content:center;padding-top:18px;border-top:1px solid rgba(255,255,255,0.04)">
+            <small class="muted" style="color:rgba(255,255,255,0.6)">Built for research and educational purposes. Not for production profiling.</small>
+        </div>
+    </div>
+</footer>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

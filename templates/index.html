@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container hero">
+
+    <div>
+        <h1>Dialect identification for Telugu text</h1>
+        <p class="muted">Fast, lightweight NLP model that recognizes regional Telugu slang and maps it to dialects.</p>
+        <a href="/predict" class="btn btn-spinner"> <span>🚀 Try Prediction</span></a>
+    </div>
+
+    <div class="fade-up" aria-hidden="true">
+        <!-- Minimal decorative illustration -->
+        <svg width="100%" viewBox="0 0 360 260" xmlns="http://www.w3.org/2000/svg" role="img">
+            <defs>
+                <linearGradient id="g" x1="0" x2="1">
+                    <stop offset="0" stop-color="#a78bfa" stop-opacity="0.9"/>
+                    <stop offset="1" stop-color="#60a5fa" stop-opacity="0.9"/>
+                </linearGradient>
+            </defs>
+            <rect rx="18" width="360" height="260" fill="#fff" opacity="0.85"/>
+            <g transform="translate(20,20)">
+                <circle cx="80" cy="70" r="34" fill="url(#g)" opacity="0.95"></circle>
+                <rect x="140" y="40" width="140" height="110" rx="12" fill="#eef2ff"></rect>
+                <path d="M20 160c40-30 120-30 180 0" stroke="#c7d2fe" stroke-width="10" fill="none" stroke-linecap="round"></path>
+            </g>
+        </svg>
+    </div>
+
+</div>
+
+<div class="container features">
+
+    <div class="card">
+        <h3>⚡ Fast</h3>
+        <p class="muted">Near-instant inference on short phrases.</p>
+    </div>
+
+    <div class="card">
+        <h3>🌍 Regions</h3>
+        <p class="muted">Supports multiple Telugu regions and common slang.</p>
+    </div>
+
+    <div class="card">
+        <h3>🤖 AI</h3>
+        <p class="muted">Trained model with tokenizer and lightweight weights.</p>
+    </div>
+
+</div>
+
+{% endblock %}
